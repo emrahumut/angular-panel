@@ -1,0 +1,70 @@
+<app-header [isExpand]="opened" (opened)="opened = $event" class="header" fxLayout="column"></app-header>
+<mat-sidenav-container class="test">
+    <mat-sidenav mode="side" fxFlex="15" style="width: 30%; height: 100%;" [(opened)]="opened" class="test2">
+        <mat-nav-list role="navigation" fxLayout="column">
+            <a class="sidebar-button" mat-list-item role="listitem" routerLink="/user">Users</a>
+            <a class="sidebar-button" mat-list-item role="listitem" routerLink="/todo">Todo</a>
+            <a class="sidebar-button" mat-list-item role="listitem" routerLink="/post">Post</a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+<!-- 
+    <div fxFlex="15">
+        <button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button>
+
+        <mat-sidenav-container class="example-container" *ngIf="shouldRun">
+            <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+                (closed)="events.push('close!')">
+                Sidenav content
+            </mat-sidenav>
+
+            <mat-sidenav-content>
+                <p>
+                    <mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox>
+                </p>
+                <p></p>
+                <p>Events:</p>
+                <div class="example-events">
+                    <div *ngFor="let e of events">{{e}}</div>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div> -->
+
+<!-- <button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button>
+
+    <mat-sidenav-container class="example-container" *ngIf="shouldRun">
+        <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+            Sidenav content
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <p>
+                <mat-checkbox>sidenav.opened</mat-checkbox>
+            </p>
+            <button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button>
+        </mat-sidenav-content>
+    </mat-sidenav-container> -->
+<!-- 
+    <div fxFlex="85">
+
+
+        <router-outlet></router-outlet>
+    </div> -->
+
+
+<!-- <div class="container" role="list" fxLayout="row" fxLayoutAlign="start start">
+    <mat-nav-list *ngIf="isExpand" role="navigation" class="sidebar" fxFlex="15" fxLayout="column"
+        fxLayoutAlign="start start">
+        <a class="sidebar-button" mat-list-item role="listitem" routerLink="/user" color="primary">Users</a>
+        <a class="sidebar-button" mat-list-item role="listitem" routerLink="/todo" color="primary">Todo</a>
+        <a class="sidebar-button" mat-list-item role="listitem" routerLink="/post" color="primary">Post</a>
+    </mat-nav-list>
+</div> -->

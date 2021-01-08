@@ -1,16 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { LayoutModule } from './layout/layout.module';
+import { SharedModule } from './shared/components/shared.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './core/material.module';
+import { MatListModule } from '@angular/material/list';
+
+const routes: Routes = [
+  {
+    path: '',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule),
+      }
+    ]
+  }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    RouterModule.forRoot(routes),
+    LayoutModule,
+    MaterialModule,
+    FlexLayoutModule,
+    BrowserAnimationsModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

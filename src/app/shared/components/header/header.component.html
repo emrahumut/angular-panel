@@ -1,0 +1,6 @@
+<mat-toolbar color="primary">
+    <button mat-button class="menu-button" (click)="expand()">
+        <mat-icon *ngIf="!isExpand">menu</mat-icon>
+        <mat-icon *ngIf="isExpand">close</mat-icon>
+    </button>
+</mat-toolbar>
