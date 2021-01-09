@@ -1,9 +1,8 @@
-
 <button mat-raised-button color="accent" style="margin-bottom: 15px;">New User</button>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
-    <ng-container [matColumnDef]="tableData" *ngFor="let tableData of displayedColumns">
+    <ng-container [matColumnDef]="tableData.column" *ngFor="let tableData of columnData">
         <th mat-header-cell *matHeaderCellDef>{{tableData.title | uppercase}}</th>
-        <td mat-cell *matCellDef="let element"> {{element[tableData]}} </td>
+        <td mat-cell *matCellDef="let element"> {{element[tableData.column]}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
