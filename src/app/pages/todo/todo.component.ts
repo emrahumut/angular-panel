@@ -14,16 +14,19 @@ export interface PeriodicElement {
 
 export class TodoComponent implements OnInit {
     dataSource = [
-        {username: 'Hydrogen', title: 'TODO TITLE TEST', completed: true},
-        {username: 'TEST TODO', title: 'TODO TITLE TEST22', completed: false},
-        {username: 'TEST TODO22', title: 'TODO TITLE TEST2222', completed: true},
-        {username: 'TEST TODO22', title: 'TODO TITLE TEST2222', completed: true},
-        {username: 'TEST TODO22', title: 'TODO TITLE TEST2222', completed: true}
-    
+        { username: 'Hydrogen', title: 'TODO TITLE TEST', completed: true },
+        { username: 'TEST TODO', title: 'TODO TITLE TEST22', completed: false },
+        { username: 'TEST TODO22', title: 'TODO TITLE TEST2222', completed: true },
+        { username: 'TEST TODO22', title: 'TODO TITLE TEST2222', completed: true },
+        { username: 'TEST TODO22', title: 'TODO TITLE TEST2222', completed: true }
+
     ];
 
-    displayedColumns: string[] = ['username', 'title', 'completed'];
-
+    columnData = [
+        { title: 'Username', column: 'username' },
+        { title: 'Title', column: 'title' },
+        { title: 'Completed', column: 'completed' }
+    ];
     constructor() { }
 
     ngOnInit() { }

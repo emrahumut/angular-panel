@@ -26,15 +26,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class CommonTableComponent implements OnInit {
 
-    @Input() displayedColumns: any;
+    @Input() columnData: any;
     @Input() dataSource: any;
 
+    displayedColumns: string[];
 
     constructor() {
-        
+
     }
 
     ngOnInit() {
-        console.log(this.dataSource , this.displayedColumns);
+        this.displayedColumns = this.columnData.map(col => col.column);
     }
 }
