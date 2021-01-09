@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './core/material.module';
 import { MatListModule } from '@angular/material/list';
+import { CommonTableComponent } from './shared/components/common-table/common-table.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     BrowserModule,
