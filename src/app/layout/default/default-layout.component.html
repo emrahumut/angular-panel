@@ -1,6 +1,6 @@
 <app-header [isExpand]="opened" (opened)="opened = $event" class="header" fxLayout="column"></app-header>
 <mat-sidenav-container class="test">
-    <mat-sidenav mode="side" fxFlex="15" style="width: 30%; height: 100%;" [(opened)]="opened" class="test2">
+    <mat-sidenav mode="side" fxFlex="15" style="width: 30%" [(opened)]="opened" class="test2">
         <mat-nav-list role="navigation" fxLayout="column">
             <a class="sidebar-button" mat-list-item role="listitem" routerLink="/user">Users</a>
             <a class="sidebar-button" mat-list-item role="listitem" routerLink="/todo">Todo</a>
@@ -8,7 +8,7 @@
         </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content fxFlex="routerLayout">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

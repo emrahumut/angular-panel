@@ -18,10 +18,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 const routes: Routes = [
+
+    { path: '', redirectTo: '/user', pathMatch: 'full' },
     {
         path: '',
         component: DefaultLayoutComponent,
         children: [
+
             {
                 path: 'user',
                 component: UserComponent
