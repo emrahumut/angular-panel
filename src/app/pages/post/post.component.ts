@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { title } from 'process';
 
 
 
@@ -15,8 +16,12 @@ export class PostComponent implements OnInit {
         { username: "TEST 333 USERNAME POST", title: "test 44 title", body: "testasdsa body" },
         { username: "TEST 4444 USERNAME POST", title: "test  444 title", body: "testsadasas body" }
     ];
-    
-    displayedColumns = ['username', 'title', 'body'];
+
+    columnData = [
+        { title: 'Username', column: 'username' },
+        { title: 'Title', column: 'title' },
+        { title: 'Body', column: 'body' }
+    ];
 
     constructor() { }
 
