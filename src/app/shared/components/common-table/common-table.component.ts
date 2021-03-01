@@ -1,41 +1,67 @@
-import { Component, Input, OnInit } from '@angular/core';
-export interface PeriodicElement {
-    name: string;
-    position: number;
-    weight: number;
-    symbol: string;
-}
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CommonDialog } from '../../dialogs/common-dialog/common-dialog.component';
+import { ColumnDataModel } from '../../models/table.model';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { UsersService } from 'src/app/services/users.service';
+import { OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-const ELEMENT_DATA: PeriodicElement[] = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+
 @Component({
     selector: 'common-table',
     templateUrl: 'common-table.component.html'
 })
 
 
-export class CommonTableComponent implements OnInit {
+export class CommonTableComponent implements OnInit, OnDestroy {
 
-    @Input() columnData: any;
+    @Input() columnData: ColumnDataModel[];
     @Input() dataSource: any;
 
     displayedColumns: string[];
+    subscription: Subscription;
+    usernameId: any;
+    animal: string;
+    name: string;
 
-    constructor() {
 
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+
+    constructor(
+        private dialog: MatDialog,
+        private userService: UsersService
+    ) {
+    }
+
+    ngAfterViewInit() {
+        this.dataSource.paginator = this.paginator;
     }
 
     ngOnInit() {
         this.displayedColumns = this.columnData.map(col => col.column);
+        this.subscription = this.userService.commonUserData().subscribe(data => {
+            console.log(data);
+        })
+    }
+
+
+    openDialog(): void {
+        const dialogRef = this.dialog.open(CommonDialog,
+            {
+                width: '450px',
+                data: { name: this.displayedColumns, animal: this.animal }
+            });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+            this.animal = result;
+        });
+    }
+
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 }
