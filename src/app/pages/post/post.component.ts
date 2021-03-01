@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { title } from 'process';
+import { PostsService } from 'src/app/services/posts.service';
 
 
 
@@ -22,8 +23,15 @@ export class PostComponent implements OnInit {
         { title: 'Title', column: 'title' },
         { title: 'Body', column: 'body' }
     ];
+    displayedColumns: string[] = this.columnData.map(col => col.column);
 
-    constructor() { }
+    constructor(
+        private postsService: PostsService,
+    ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.postsService.getPosts().subscribe(data => {
+            console.log(data);
+        })
+    }
 }

@@ -12,11 +12,20 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonTableComponent } from './common-table/common-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CommonDialog } from '../dialogs/common-dialog/common-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { UsersService } from 'src/app/services/users.service';
+import { TodosService } from 'src/app/services/todos.service';
+import { PostsService } from 'src/app/services/posts.service';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     declarations: [
         HeaderComponent,
-        CommonTableComponent
+        CommonTableComponent,
+        CommonDialog
     ],
     imports: [
         BrowserModule,
@@ -30,13 +39,21 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatListModule,
         MatTableModule,
         MatDialogModule,
-        
+        MatFormFieldModule,
+        FormsModule,
+        MatInputModule,
+        MatPaginatorModule
     ],
     exports: [
         HeaderComponent,
-        CommonTableComponent
+        CommonTableComponent,
+        CommonDialog
 
     ],
-    providers: [],
+    providers: [
+        UsersService,
+        TodosService,
+        PostsService
+    ],
 })
 export class SharedModule { }

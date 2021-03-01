@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { filter, map } from 'rxjs/operators';
+import { TodosService } from 'src/app/services/todos.service';
+import { ColumnDataModel } from 'src/app/shared/models/table.model';
+import { TodoModel } from 'src/app/shared/models/todo.model';
+
+
 export interface PeriodicElement {
     username: string;
     title: string;
@@ -13,21 +19,34 @@ export interface PeriodicElement {
 })
 
 export class TodoComponent implements OnInit {
-    dataSource = [
-        { username: 'Hydrogen', title: 'TODO TITLE TEST', completed: true },
-        { username: 'TEST TODO', title: 'TODO TITLE TEST22', completed: false },
-        { username: 'TEST TODO22', title: 'TODO TITLE TEST2222', completed: true },
-        { username: 'TEST TODO22', title: 'TODO TITLE TEST2222', completed: true },
-        { username: 'TEST TODO22', title: 'TODO TITLE TEST2222', completed: true }
+    // dataSource: TodoModel[] = [
+    //     { username: 'Hydrogen', title: 'TODO TITLE TEST', completed: true },
+    //     { username: 'TEST TODO', title: 'TODO TITLE TEST22', completed: false },
+    //     { username: 'TEST TODO22', title: 'TODO TITLE TEST2222', completed: true },
+    //     { username: 'TEST TODO22', title: 'TODO TITLE TEST2222', completed: true },
+    //     { username: 'TEST TODO22', title: 'TODO TITLE TEST2222', completed: true }
 
-    ];
+    // ];
 
-    columnData = [
+    dataSource: any;
+
+    columnData: ColumnDataModel[] = [
         { title: 'Username', column: 'username' },
         { title: 'Title', column: 'title' },
         { title: 'Completed', column: 'completed' }
     ];
-    constructor() { }
 
-    ngOnInit() { }
+    displayedColumns: string[] = this.columnData.map(col => col.column);
+
+    constructor(
+        private todosService: TodosService
+    ) { }
+
+    ngOnInit() {
+        this.todosService.getTodos()
+            .subscribe(todos => {
+                console.log(todos);
+                this.dataSource = todos;
+            })
+    }
 }

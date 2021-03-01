@@ -3,12 +3,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
-import { SharedModule } from './shared/components/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './core/material.module';
 import { MatListModule } from '@angular/material/list';
-import { CommonTableComponent } from './shared/components/common-table/common-table.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -33,9 +32,11 @@ const routes: Routes = [
     MaterialModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-    MatListModule
+    MatListModule, 
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
